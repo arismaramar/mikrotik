@@ -1,0 +1,55 @@
+:global addressListName YOUTUBE
+:global networks {".youtube.com"; ".googlevideo.com"; ".ytimg.com"} 
+:foreach domain in=$networks do={
+    :put ("$domain")
+    /ip firewall raw add action=add-dst-to-address-list address-list=$addressListName address-list-timeout=1d chain=prerouting content=$domain dst-address-list=!LOCAL-SCOPE src-address-list=LOCAL-SCOPE
+}
+
+/ip firewall mangle add action=mark-connection chain=prerouting dst-address-list=$addressListName new-connection-mark="CONN-$addressListName" passthrough=yes src-address-list=LOCAL-SCOPE
+/ip firewall mangle add action=mark-packet chain=prerouting connection-mark="CONN-$addressListName" new-packet-mark="PACKET-$addressListName" passthrough=no src-address-list=LOCAL-SCOPE
+
+
+:global addressListName SNACKVIDEO
+:global networks {".snackvideo.com"; ".myqcloud.com"; ".snackvideo.in"; ".myqcloud.com"} 
+:foreach domain in=$networks do={
+    :put ("$domain")
+    /ip firewall raw add action=add-dst-to-address-list address-list=$addressListName address-list-timeout=1d chain=prerouting content=$domain dst-address-list=!LOCAL-SCOPE src-address-list=LOCAL-SCOPE
+}
+
+/ip firewall mangle add action=mark-connection chain=prerouting dst-address-list=$addressListName new-connection-mark="CONN-$addressListName" passthrough=yes src-address-list=LOCAL-SCOPE
+/ip firewall mangle add action=mark-packet chain=prerouting connection-mark="CONN-$addressListName" new-packet-mark="PACKET-$addressListName" passthrough=no src-address-list=LOCAL-SCOPE
+
+
+:global addressListName TIKTOK
+:global networks {".tiktok.com"; ".tiktokv.com"; ".tiktokcdn.com"; ".byteoversea.com"; ".ibyteimg.com"; ".ibytedtos.com"; ".twitter.com"; ".twimg.com"; ".t.co"} 
+:foreach domain in=$networks do={
+    :put ("$domain")
+    /ip firewall raw add action=add-dst-to-address-list address-list=$addressListName address-list-timeout=1d chain=prerouting content=$domain dst-address-list=!LOCAL-SCOPE src-address-list=LOCAL-SCOPE
+}
+
+/ip firewall mangle add action=mark-connection chain=prerouting dst-address-list=$addressListName new-connection-mark="CONN-$addressListName" passthrough=yes src-address-list=LOCAL-SCOPE
+/ip firewall mangle add action=mark-packet chain=prerouting connection-mark="CONN-$addressListName" new-packet-mark="PACKET-$addressListName" passthrough=no src-address-list=LOCAL-SCOPE
+
+
+:global addressListName INSTAGRAM
+:global networks {".instagram.com"; ".cdninstagram.com"} 
+:foreach domain in=$networks do={
+    :put ("$domain")
+    /ip firewall raw add action=add-dst-to-address-list address-list=$addressListName address-list-timeout=1d chain=prerouting content=$domain dst-address-list=!LOCAL-SCOPE src-address-list=LOCAL-SCOPE
+}
+
+/ip firewall mangle add action=mark-connection chain=prerouting dst-address-list=$addressListName new-connection-mark="CONN-$addressListName" passthrough=yes src-address-list=LOCAL-SCOPE
+/ip firewall mangle add action=mark-packet chain=prerouting connection-mark="CONN-$addressListName" new-packet-mark="PACKET-$addressListName" passthrough=no src-address-list=LOCAL-SCOPE
+
+
+:global addressListName FACEBOOK
+:global networks {".facebook.com"; ".facebook.net"; ".fbcdn.net";  ".fbsbx.com";  ".fb.com"; ".fb.gg"; ".fbwat.ch"; ".messenger.com"; ".m.me"} 
+:foreach domain in=$networks do={
+    :put ("$domain")
+    /ip firewall raw add action=add-dst-to-address-list address-list=$addressListName address-list-timeout=1d chain=prerouting content=$domain dst-address-list=!LOCAL-SCOPE src-address-list=LOCAL-SCOPE
+}
+
+/ip firewall mangle add action=mark-connection chain=prerouting dst-address-list=$addressListName new-connection-mark="CONN-$addressListName" passthrough=yes src-address-list=LOCAL-SCOPE
+/ip firewall mangle add action=mark-packet chain=prerouting connection-mark="CONN-$addressListName" new-packet-mark="PACKET-$addressListName" passthrough=no src-address-list=LOCAL-SCOPE
+
+
